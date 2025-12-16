@@ -37,12 +37,13 @@ public class ReplyResponse {
             if (reply.getCreatedAt() != null) {
                 this.createdAt = MyDateUtil.timestampFormat(reply.getCreatedAt());
             }
+            this.isOwner = reply.isOwner(sessionUserId);
+            
             // 댓글 소유자 여부 확인
             System.out.println("=== ReplyResponse.ListDTO 생성 ===");
             System.out.println("댓글 ID: " + reply.getId());
             System.out.println("댓글 작성자 ID: " + (reply.getUser() != null ? reply.getUser().getId() : null));
             System.out.println("세션 사용자 ID: " + sessionUserId);
-            this.isOwner = reply.isOwner(sessionUserId);
             System.out.println("isOwner 결과: " + this.isOwner);
             System.out.println("=================================");
         }
