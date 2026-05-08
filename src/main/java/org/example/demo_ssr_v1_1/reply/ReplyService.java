@@ -66,9 +66,13 @@ public class ReplyService {
         // 트랜잭션 내에서 엔티티를 DTO로 변환
         // Stream을 사용하여 각 Reply 엔티티를 ListDTO로 변환
         // 람다 표현식 사용: reply -> new ReplyResponse.ListDTO(reply, sessionUserId)
+        // return replyList.stream()
+        //        .map(reply -> new ReplyResponse.ListDTO(reply, sessionUserId))
+        //        .collect(Collectors.toList()); // 수정가능한 리스트 반환 
+
         return replyList.stream()
-                .map(reply -> new ReplyResponse.ListDTO(reply, sessionUserId))
-                .collect(Collectors.toList());
+            .map(reply -> new ReplyResponse.ListDTO(reply, sessionUserId))
+            .toList(); // 변경된 부분! // 수정 불가능한 리스트 반환 (권장)
     }
 
     /**
